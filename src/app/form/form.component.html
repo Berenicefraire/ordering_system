@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="saveOrder()">
+      <div>
+        <label for="">Nombre</label>
+        <input formControlName="name" type="text">
+      </div>
+      <div>
+        <label for="">Teléfono</label>
+        <input formControlName="cell_phone" type="text">
+      </div>
+      <div>
+        <label for="">Correo</label>
+        <input formControlName="email" type="text">
+      </div>
+      <div>
+        <ng-container formArrayName="orders">
+          <ng-container *ngFor="let order of orders.controls; let i = index">
+            <div [formGroupName]="i" >
+              <div>
+                <input formControlName="design" type="text" placeholder="Diseño">
+              </div>
+              <div>
+                <input formControlName="payment" type="text" placeholder="Anticipo">
+              </div>
+              <div>
+                <input formControlName="totalCost" type="text" placeholder="Total">
+              </div>
+              <div>
+                <select formControlName="colorsOption">
+                  <option value="0">Selecciona un color</option>
+                  <ng-container *ngFor="let color of garmentColors">
+                    <option [value]="color.id_color">{{color.color_name}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <div>
+                <select formControlName="genderOption">
+                <option value="0">Genero</option>
+                <ng-container *ngFor="let gender of garmetGenders">
+                  <option [value]="gender.id_gender">{{gender.gender}}</option>
+                </ng-container>
+                </select>
+              </div>
+              <div>
+                <select formControlName="sizeOption">
+                  <option value="0">Selecciona una talla</option>
+                  <ng-container *ngFor="let size of garmetSizes">
+                    <option [value]="size.id_size">{{size.sizes}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <div>
+                <select formControlName="printType" >
+                <option value="0">Selecciona el tipo de impresión</option>
+                <ng-container *ngFor="let textylType of garmetTextilType">
+                  <option [value]="textylType. id_textil_type">{{textylType.textil_type}}</option>
+                </ng-container>
+                </select>
+                </div>
+                <div>
+                  <textarea formControlName="coments" placeholder="Comentarios"></textarea>
+                </div>
+            </div>
+        </ng-container>
+        </ng-container>
+        </div>
+        <div>
+          <!-- <button [disabled]="this.form.invalid" (click)="addNewOrder()">Agregar pedido</button> -->
+          <button (click)="addNewOrder()">Agregar pedido</button>
+          <button [disabled]="this.form.invalid" [disabled]="buttonDisabled">Finalizar pedido</button>
+        </div>
+  </form>
+</div>
+</div>
+

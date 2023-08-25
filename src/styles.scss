@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  height: 100%;
+}
+
+html{
+  height: 100%;
+}
+.container {
+  display: grid;
+  height: 100%;
+  background-color: rgb(255, 110, 57);
+  place-items: center;
+}
+
