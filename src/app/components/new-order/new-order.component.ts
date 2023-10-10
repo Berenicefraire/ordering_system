@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators, FormArray} from '@angular/forms';
 import { Subscription, take} from 'rxjs';
 
-import { OrdersService } from '../services/orders.service';
-import { AssetService } from '../services/asset.service';
+import { OrdersService } from '../../services/orders.service';
+import { AssetService } from '../../services/asset.service';
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  selector: 'new-order',
+  templateUrl: './new-order.component.html',
+  styleUrls: ['./new-order.component.scss']
 })
-export class FormComponent implements OnInit {
+export class NewOrderComponent implements OnInit {
   form: FormGroup;
   garmentColors: any[] = [];
   garmetGenders: any[] = [];
@@ -58,7 +58,17 @@ export class FormComponent implements OnInit {
   }
 
   saveOrder() {
-    this.ordersService.saveFormData(this.form.value).subscribe(res => {
+    const payload = {
+      customer: {
+        name: this.form.get('name')?.value,
+        cell_phone: this.form.get('cell_phone')?.value,
+        email: this.form.get('email')?.value,
+        order_place: this.form.get('orderPlace')?.value,
+      },
+      orders: this.form.get('orders')?.value
+    }
+    this.ordersService.saveFormData(payload).subscribe(res => {
+      console.log(res)
     })
   }
 

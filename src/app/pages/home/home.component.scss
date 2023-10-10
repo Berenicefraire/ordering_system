@@ -2,7 +2,7 @@
   display: grid;
   height: 100%;
   grid-template-columns: 20% auto 20% ;
-  grid-template-rows: repeat(1fr, auto, 1fr);
+  grid-template-rows: 1fr auto 1fr;
   height: 100vh;
   grid-template-areas:
   ". . ."
@@ -10,8 +10,16 @@
   ". . .";
 }
 
-.form-content {
+.img-container {
   grid-area: content;
   justify-self: center;
+  align-self: center;
+  img {
+    display: block;
+    width: 400px;
+  }
+  button {
+    padding: 10px 25px;
+  }
   }
 

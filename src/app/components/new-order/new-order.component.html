@@ -1,6 +1,7 @@
 <div class="container">
   <div class="form-content">
   <form [formGroup]="form" (ngSubmit)="saveOrder()">
+    <div class="user-information-form">
       <div>
         <label for="">Nombre</label>
         <input formControlName="name" type="text">
@@ -13,33 +14,37 @@
         <label for="">Correo</label>
         <input formControlName="email" type="text">
       </div>
-      <div>
+      <div class="orderplace-form">
         <select formControlName="orderPlace">
           <option value="">Donde se realizó el pedido</option>
           <ng-container *ngFor="let order of orderPlaces">
-            <option [value]="order.id_order_place">{{order.order_place}}</option>
+            <option [value]="order.id_order_places">{{order.order_places}}</option>
           </ng-container>
         </select>
       </div>
+    </div>
       <br>
-      <div>
+      <div class="purchase-details-form">
         <ng-container formArrayName="orders">
           <ng-container *ngFor="let order of orders.controls; let i = index">
-            <div [formGroupName]="i" >
+            <div class="purchase-details" [formGroupName]="i" >
               <div>
+                <label for="">Diseño</label>
                 <input formControlName="design" type="text" placeholder="Diseño">
               </div>
               <div>
+                <label for="">Anticipo</label>
                 <input formControlName="payment" type="text" placeholder="Anticipo">
               </div>
               <div>
+                <label for="">Costo total de la prenda</label>
                 <input formControlName="totalCost" type="text" placeholder="Total">
               </div>
               <div>
                 <select formControlName="colorsOption">
                   <option value="">Selecciona un color</option>
                   <ng-container *ngFor="let color of garmentColors">
-                    <option [value]="color.id_color">{{color.color_name}}</option>
+                    <option [value]="color.id_colors">{{color.colors}}</option>
                   </ng-container>
                 </select>
               </div>
@@ -47,7 +52,7 @@
                 <select formControlName="genderOption">
                 <option value="">Genero</option>
                 <ng-container *ngFor="let gender of garmetGenders">
-                  <option [value]="gender.id_gender">{{gender.gender}}</option>
+                  <option [value]="gender.id_genders">{{gender.genders}}</option>
                 </ng-container>
                 </select>
               </div>
@@ -55,7 +60,7 @@
                 <select formControlName="sizeOption">
                   <option value="">Selecciona una talla</option>
                   <ng-container *ngFor="let size of garmetSizes">
-                    <option [value]="size.id_size">{{size.sizes}}</option>
+                    <option [value]="size.id_sizes">{{size.sizes}}</option>
                   </ng-container>
                 </select>
               </div>
@@ -67,17 +72,21 @@
                 </ng-container>
                 </select>
                 </div>
-                <div>
+                <div class="textarea-form">
                   <textarea formControlName="coments" placeholder="Comentarios"></textarea>
                 </div>
             </div>
         </ng-container>
         </ng-container>
         </div>
-        <div>
+        <div class="button-form">
           <!-- <button [disabled]="this.form.invalid" (click)="addNewOrder()">Agregar pedido</button> -->
+        <div class="btn">
           <button (click)="addNewOrder()">Agregar pedido</button>
+        </div>
+        <div class="btn">
           <button [disabled]="this.form.invalid" [disabled]="buttonDisabled" type="submit">Finalizar pedido</button>
+        </div>
         </div>
   </form>
 </div>

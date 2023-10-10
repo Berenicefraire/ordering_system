@@ -1,0 +1,31 @@
+@import '../assets/scss/partials/colors';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-areas: "menu content";
+
+  .left-menu {
+    grid-area: menu;
+    background-color: $orange-ah;
+  }
+  .content {
+    grid-area: content;
+    .header-container {
+      display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: 1fr;
+      .test {
+        grid-area: "test";
+      }
+      .routes-container {
+        grid-area: "routes-container";
+      }
+    }
+  }
+}
+
+
+
+
